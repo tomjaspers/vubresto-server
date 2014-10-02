@@ -47,7 +47,6 @@ def is_veggiedag_img(img):
     src = img.get('src', None) if img is not None else None
     if src is None:
         return False
-    print src
     return "veggiedag" in src
 
 def normalize_text(text):
