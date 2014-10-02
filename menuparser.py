@@ -100,16 +100,16 @@ def parse_restaurant(name, url):
             tds = tr.getchildren()
             menu_name = normalize_text(tds[0].text_content())
             menu_dish = normalize_text(tds[1].text_content())
-            menu_color = COLOR_MAPPING.get(menu_name.lower(), None)
-            if menu_color is None:
-                logging.warning(name + " - Failed to get a color for the menu: '" +\
-                                menu_name + "' (" + str(date) + ")")
-                menu_color = '#ffffff'
             # Sometimes there is no menu name, but just an image (e.g., for "Veggiedag")
             if not menu_name:
                 img = sel_img(tds[0])
                 img = img[0] if img else None
                 menu_name = 'Veggiedag' if is_veggiedag_img(img) else 'Menu'
+            menu_color = COLOR_MAPPING.get(menu_name.lower(), None)
+            if menu_color is None:
+                logging.warning(name + " - Failed to get a color for the menu: '" +\
+                                menu_name + "' (" + str(date) + ")")
+                menu_color = '#ffffff'
             menus.append({'name': menu_name, 'dish': menu_dish, 'color': menu_color})
         data.append({'date': str(date), 'menus': menus})
     return data
