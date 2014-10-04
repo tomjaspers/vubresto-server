@@ -111,7 +111,8 @@ def parse_restaurant(name, url):
                 logging.warning(name + " - Failed to get a color for the menu: '" +\
                                 menu_name + "' (" + str(date) + ")")
                 menu_color = '#ffffff'
-            menus.append({'name': menu_name, 'dish': menu_dish, 'color': menu_color})
+            if menu_dish:
+                menus.append({'name': menu_name, 'dish': menu_dish, 'color': menu_color})
         data.append({'date': str(date), 'menus': menus})
     return data
 
