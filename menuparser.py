@@ -23,6 +23,7 @@ COLOR_MAPPING['dag menu'] = '#68b6f3' #blue
 COLOR_MAPPING['dagmenu'] = '#68b6f3' #blue
 COLOR_MAPPING['health'] = '#ff9861' # orange
 COLOR_MAPPING['menu 2'] = '#cc93d5' # purple
+COLOR_MAPPING['meals of the world'] = '#cc93d5' # purple
 COLOR_MAPPING['veggie'] = '#87b164' # green
 COLOR_MAPPING['veggiedag'] = '#87b164' # green
 COLOR_MAPPING['pasta'] = '#de694a' # red
