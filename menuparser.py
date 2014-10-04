@@ -30,6 +30,8 @@ COLOR_MAPPING['pasta'] = '#de694a' # red
 COLOR_MAPPING['pasta bar'] = '#de694a' # red
 COLOR_MAPPING['wok'] = '#6c4c42' # brown
 
+DEFAULT_COLOR = '#f0eb93' # very light yellow
+
 # Months in Dutch, to allow the parsing of the (Dutch) site
 LOCAL_MONTHS = {}
 LOCAL_MONTHS['januari'] = 1
@@ -110,7 +112,7 @@ def parse_restaurant(name, url):
             if menu_color is None:
                 logging.warning(name + " - Failed to get a color for the menu: '" +\
                                 menu_name + "' (" + str(date) + ")")
-                menu_color = '#ffffff'
+                menu_color = DEFAULT_COLOR
             if menu_dish:
                 menus.append({'name': menu_name, 'dish': menu_dish, 'color': menu_color})
         data.append({'date': str(date), 'menus': menus})
@@ -138,7 +140,6 @@ def main():
     # Parse and save the 2 restaurants
     parse_and_save("Etterbeek", URL_ETTERBEEK)
     parse_and_save("Jette", URL_JETTE)
-    
-    
+
 if __name__ == "__main__":
     main()
