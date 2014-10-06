@@ -1,6 +1,6 @@
 # Application generated files
-etterbeek.json
-jette.json
+etterbeek*.json
+jette*.json
 menuparser.log
 
 # Created by https://www.gitignore.io

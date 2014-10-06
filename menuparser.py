@@ -12,18 +12,24 @@ from lxml.cssselect import CSSSelector
 SAVE_PATH = '/Users/tjs/Development/vubresto-server/'
 
 # Urls of the pages that will get parsed
-URL_ETTERBEEK = 'https://my.vub.ac.be/resto/etterbeek'
-URL_JETTE = 'https://my.vub.ac.be/resto/jette'
+URL_ETTERBEEK_NL = 'https://my.vub.ac.be/resto/etterbeek'
+URL_ETTERBEEK_EN = 'https://my.vub.ac.be/restaurant/etterbeek'
+URL_JETTE_NL = 'https://my.vub.ac.be/resto/jette'
+URL_JETTE_EN = 'https://my.vub.ac.be/restaurant/jette'
+
 
 # Mapping of colors for the menus.
 COLOR_MAPPING = {}
 COLOR_MAPPING['soep'] = '#fdb85b' # yellow
+COLOR_MAPPING['soup'] = '#fdb85b' # yellow
 COLOR_MAPPING['menu 1'] = '#68b6f3' # blue
 COLOR_MAPPING['dag menu'] = '#68b6f3' #blue
 COLOR_MAPPING['dagmenu'] = '#68b6f3' #blue
 COLOR_MAPPING['health'] = '#ff9861' # orange
 COLOR_MAPPING['menu 2'] = '#cc93d5' # purple
 COLOR_MAPPING['meals of the world'] = '#cc93d5' # purple
+COLOR_MAPPING['fairtrade'] = '#cc93d5' # purple
+COLOR_MAPPING['fairtrade menu'] = '#cc93d5' # purple
 COLOR_MAPPING['veggie'] = '#87b164' # green
 COLOR_MAPPING['veggiedag'] = '#87b164' # green
 COLOR_MAPPING['pasta'] = '#de694a' # red
@@ -138,8 +144,10 @@ def main():
     logging.basicConfig(filename='menuparser.log', level='WARNING')
 
     # Parse and save the 2 restaurants
-    parse_and_save("Etterbeek", URL_ETTERBEEK)
-    parse_and_save("Jette", URL_JETTE)
+    parse_and_save("Etterbeek.nl", URL_ETTERBEEK_NL)
+    parse_and_save("Jette.nl", URL_JETTE_NL)
+    parse_and_save("Etterbeek.en", URL_ETTERBEEK_EN)
+    parse_and_save("Jette.en", URL_JETTE_EN)
 
 if __name__ == "__main__":
     main()
