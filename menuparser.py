@@ -1,4 +1,4 @@
-#!/usr/bin/env python26
+#!/usr/bin/env python27
 import io
 import os
 import json
@@ -102,25 +102,29 @@ def parse_restaurant(name, url):
 
         # Get the table rows
         tablerows = sel_tablerows(day_div)
-        for tr in tablerows:
-            tds = tr.getchildren()
-            menu_name = normalize_text(tds[0].text_content())
-            menu_dish = normalize_text(tds[1].text_content())
-            # Sometimes there is no menu name,
-            # but just an image (e.g., for "Veggiedag")
-            if not menu_name:
-                img = sel_img(tds[0])
-                img = img[0] if img else None
-                menu_name = 'Veggiedag' if is_veggiedag_img(img) else 'Menu'
-            menu_color = COLOR_MAPPING.get(menu_name.lower(), None)
-            if menu_color is None:
-                logging.warning(name + " - No color found for the menu: '" +
-                                menu_name + "' (" + str(date) + ")")
-                menu_color = DEFAULT_COLOR
-            if menu_dish:
-                menus.append({'name': menu_name,
-                              'dish': menu_dish,
-                              'color': menu_color})
+        try:
+            for tr in tablerows:
+                tds = tr.getchildren()
+                menu_name = normalize_text(tds[0].text_content())
+                menu_dish = normalize_text(tds[1].text_content())
+                # Sometimes there is no menu name,
+                # but just an image (e.g., for "Veggiedag")
+                if not menu_name:
+                    img = sel_img(tds[0])
+                    img = img[0] if img else None
+                    menu_name = 'Veggiedag' if is_veggiedag_img(img) else 'Menu'
+                menu_color = COLOR_MAPPING.get(menu_name.lower(), None)
+                if menu_color is None:
+                    logging.warning(name + " - No color found for the menu: '" +
+                                    menu_name + "' (" + str(date) + ")")
+                    menu_color = DEFAULT_COLOR
+                if menu_dish:
+                    menus.append({'name': menu_name,
+                                  'dish': menu_dish,
+                                  'color': menu_color})
+        except:
+            # cba
+            pass
         data.append({'date': str(date), 'menus': menus})
     return data
 
